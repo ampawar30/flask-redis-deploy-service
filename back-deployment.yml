@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-redis-app-backend
+  labels:
+    app: flask-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-back
+  template:
+    metadata:
+      labels:
+        app: flask-back
+    spec:
+      containers:
+      - name: flask-back-end
+        image: docker.io/redis
+        ports:
+        - containerPort: 6379
+        imagePullPolicy: IfNotPresent
+
